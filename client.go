@@ -357,7 +357,7 @@ func (session *UDPMakeSession) beginMakeHole(content string) {
 func (session *UDPMakeSession) reportAddrList(buster bool, outip string) {
 	id := session.id
 	var otherAddrList string
-	fmt.Printf("outip:%s", outip)
+	fmt.Printf("outip1:%s\n", outip)
 	if !buster {
 		arr := strings.SplitN(outip, ":", 2)
 		outip, otherAddrList = arr[0], arr[1]
@@ -372,6 +372,7 @@ func (session *UDPMakeSession) reportAddrList(buster bool, outip string) {
 	}
 	outip += ";" + *addInitAddr
 	_id, _ := strconv.Atoi(id)
+	fmt.Printf("outip2:%s\n", outip)
 	engine, err := nat.Init(outip, buster, _id)
 	if err != nil {
 		println("init error", err.Error())
