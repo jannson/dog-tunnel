@@ -246,8 +246,8 @@ func (udpsession *UDPMakeSession) BeginMakeHole(step int, content string) {
 		return
 	}
 	id := udpsession.Id
-	ClientA := udpsession.ClientA
-	ClientB := udpsession.ClientB
+	ClientA := udpsession.ClientA //reg
+	ClientB := udpsession.ClientB //link
 	if step == 0 {
 		log.Println("===>>tell a to report addrlist", ClientA.RemoteAddr().String(), udpsession.ServerName, udpsession.Id)
 		delay := 0

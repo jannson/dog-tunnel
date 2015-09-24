@@ -49,6 +49,10 @@ func Xor(s string) string {
 	return string(r)
 }
 
+/* func Xor(s string) string {
+	return s
+} */
+
 func Write(conn net.Conn, id string, action string, content string) error {
 	if conn == nil {
 		return nil

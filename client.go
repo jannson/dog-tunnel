@@ -384,6 +384,7 @@ func (session *UDPMakeSession) reportAddrList(buster bool, outip string) {
 		engine.SetOtherAddrList(otherAddrList)
 	}
 	addrList := engine.GetAddrList()
+	fmt.Printf("addrList: %v\n", addrList)
 	common.Write(remoteConn, id, "report_addrlist", addrList)
 }
 

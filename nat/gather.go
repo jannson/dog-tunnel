@@ -145,8 +145,8 @@ func GatherCandidates(sock *net.UDPConn, outIpList string) ([]candidate, error) 
 		addip(ip, 0)
 	}
 
-	/*	for _, info := range ret {
-			log.Println("init ip:", info.Addr.String())
-	}*/
+	for _, info := range ret {
+		fmt.Println("init ip:", info.Addr.String())
+	}
 	return ret, nil
 }
