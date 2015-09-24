@@ -1,8 +1,6 @@
 package main
 
 import (
-	"./common"
-	"./nat"
 	"bufio"
 	"crypto/aes"
 	"crypto/cipher"
@@ -22,6 +20,9 @@ import (
 	"strings"
 	"syscall"
 	"time"
+
+	"./common"
+	"./nat"
 )
 
 var accessKey = flag.String("key", "", "please login into dog-tunnel.tk to get accesskey")
@@ -108,7 +109,7 @@ func handleResponse(conn net.Conn, clientId string, action string, content strin
 		}
 	case "remove_udpsession":
 		log.Println("server force remove udpsession", clientId)
-                delete(g_Id2UDPSession, clientId)
+		delete(g_Id2UDPSession, clientId)
 	case "query_addrlist_a":
 		outip := content
 		arr := strings.Split(clientId, "-")
@@ -356,6 +357,7 @@ func (session *UDPMakeSession) beginMakeHole(content string) {
 func (session *UDPMakeSession) reportAddrList(buster bool, outip string) {
 	id := session.id
 	var otherAddrList string
+	fmt.Printf("outip:%s", outip)
 	if !buster {
 		arr := strings.SplitN(outip, ":", 2)
 		outip, otherAddrList = arr[0], arr[1]
@@ -523,11 +525,11 @@ func main() {
 			client.Quit()
 		}
 
-                for _, session := range g_Id2UDPSession {
-                        if session.engine != nil {
-                                session.engine.Fail()
-                        }
-                }
+		for _, session := range g_Id2UDPSession {
+			if session.engine != nil {
+				session.engine.Fail()
+			}
+		}
 		if remoteConn != nil {
 			remoteConn.Close()
 		}
